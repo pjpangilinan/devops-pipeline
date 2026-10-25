@@ -21,7 +21,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             sudo rm -rf /var/www/html/*
-            sudo git clone https://github.com/pjpangilinan/devops-nginx-pipeline.git /var/www/html/
+            sudo git clone https://github.com/pjpangilinan/devops-pipeline.git /var/www/html/
             sudo docker stop my-devops-nginx || true
             sudo docker rm my-devops-nginx || true
             sudo docker run -d --name my-devops-nginx -p 80:80 -v /var/www/html/:/usr/share/nginx/html nginx
