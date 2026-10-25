@@ -23,4 +23,6 @@ jobs:
           script: |
             sudo rm -rf /var/www/html/*
             sudo git clone https://github.com/pjpangilinan/devops-nginx-pipeline.git /var/www/html/
-            sudo docker restart mystifying_antonelli
+            sudo docker stop my-devops-nginx || true
+            sudo docker rm my-devops-nginx || true
+            sudo docker run -d --name my-devops-nginx -p 80:80 -v /var/www/html/:/usr/share/nginx/html nginx
