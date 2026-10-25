@@ -20,7 +20,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            sudo rm -rf /var/www/html/*
+            sudo rm -rf /var/www/html
             sudo git clone https://github.com/pjpangilinan/devops-pipeline.git /var/www/html/
             sudo docker stop my-devops-nginx || true
             sudo docker rm my-devops-nginx || true
