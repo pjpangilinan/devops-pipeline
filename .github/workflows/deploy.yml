@@ -1,23 +1,26 @@
+
 name: Deploy Nginx to AWS
-on:
-  push:
-    branches:
-      - main
+
+'on':
+  push:
+    branches:
+      - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get the code
-        uses: actions/checkout@v4
+  deploy:
+    runs-on: ubuntu-latest
 
-      - name: Deploy to AWS
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            sudo rm -rf /var/www/html/*
-            sudo git clone https://github.com/pjpangilinan/devops-nginx-pipeline.git /var/www/html/
-            sudo docker restart mystifying_antonelli
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Deploy to AWS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo rm -rf /var/www/html/*
+            sudo git clone https://github.com/pjpangilinan/devops-nginx-pipeline.git /var/www/html/
+            sudo docker restart mystifying_antonelli
